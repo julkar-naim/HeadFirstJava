@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamExcercise {
@@ -14,7 +15,26 @@ public class StreamExcercise {
 //        streamMapping();
 //        streamSlicing();
 //        streamDistinct();
-        streamReducers();
+//        streamReducers();
+//        streamGrouping();
+        primitiveStreams();
+    }
+
+    public void primitiveStreams() {
+        int[] arr = IntStream.range(1, 5)
+                .map(n -> n + 1)
+                .toArray();
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public void streamGrouping() {
+        // grouping the numbers based on parity
+        var result = Stream.iterate(1, n -> n + 1)
+                .limit(10)
+                .collect(Collectors.groupingBy(n -> {
+                    return n % 2 == 0 ? "Even" : "Odd";
+                }));
+        System.out.println(result);
     }
 
     public void streamReducers() {
