@@ -1,3 +1,4 @@
+import advance.java.mosh.tutorial.Concurrency;
 import advance.java.mosh.tutorial.StreamExcercise;
 import chapter12.Challenges;
 import chapter12.Songs;
@@ -9,6 +10,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        new StreamExcercise().run();
+        new Concurrency().run();
     }
 }
