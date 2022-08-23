@@ -8,6 +8,15 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+class Parity {
+    static boolean isOdd(int n) {
+        return n % 2 == 1;
+    }
+    static boolean isEven(int n) {
+        return n % 2 == 0;
+    }
+}
+
 public class StreamExcercise {
 
     public void run() {
@@ -41,16 +50,16 @@ public class StreamExcercise {
         List<Integer> list = List.of(1, 2, 3, 4, 5);
 
         var count = list.stream()
-                .filter(n -> n % 2 == 0)
+                .filter(Parity::isEven)
                 .count();
         System.out.println("Number of even numbers: " + count);
 
         boolean anyOdd = list.stream()
-                .anyMatch(n -> n % 2 == 1);
+                .anyMatch(Parity::isOdd);
         System.out.println(anyOdd ? "Odd number exists in the list" : "Odd number does not exists in the list");
 
         boolean allOdd = list.stream()
-                .allMatch(n -> n % 2 == 1);
+                .allMatch(Parity::isOdd);
         System.out.println(allOdd ? "All elements are odd" : "All elements are not odd");
 
         int result = list.stream()
@@ -76,17 +85,17 @@ public class StreamExcercise {
 
     public void streamSlicing () {
         Stream.of(1, 3, 5, 2, 4, 6)
-                .takeWhile(n -> n % 2 == 1)
+                .takeWhile(Parity::isOdd)
                 .forEach(System.out::println);
         Stream.of(1, 3, 5, 2, 4, 6)
-                .dropWhile(n -> n % 2 == 1)
+                .dropWhile(Parity::isOdd)
                 .forEach(System.out::println);
     }
 
     public void streamMapping () {
         Stream.iterate(1, n -> n + 1)
                 .limit(20)
-                .filter(n -> n % 2 == 0)
+                .filter(Parity::isEven)
                 .mapToDouble(n -> (double)n)
                 .forEach(System.out::println);
 
@@ -109,7 +118,7 @@ public class StreamExcercise {
         // from arrays
         int[] arr = {3, 2, 5, 1, 3};
         arr = Arrays.stream(arr)
-                .filter(n -> n % 2 == 0)
+                .filter(Parity::isEven)
                 .toArray();
         System.out.println("Only even numbers: " + Arrays.toString(arr));
 
