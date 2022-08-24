@@ -1,4 +1,4 @@
-package advance.java.mosh.tutorial;
+package advance.java.mosh.tutorial.stream;
 
 import java.util.Arrays;
 import java.util.Collection;

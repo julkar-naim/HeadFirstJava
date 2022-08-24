@@ -1,12 +1,11 @@
-package advance.java.mosh.tutorial;
+package advance.java.mosh.tutorial.concurrency;
 
-// Recreation of race condition
+// Confinement
 
 import java.util.ArrayList;
 import java.util.List;
 
-class MyThread implements Runnable {
-
+class SimpleThread implements Runnable {
     @Override
     public void run() {
         System.out.println(Thread.currentThread().getName());
@@ -29,7 +28,7 @@ public class Concurrency {
         List<Thread> threads = new ArrayList<>();
 
         for (int i = 0; i < 1000; i++) {
-            Thread thread = new Thread(new MyThread());
+            Thread thread = new Thread(new SimpleThread());
             thread.start();
             threads.add(thread);
         }
