@@ -1,9 +1,8 @@
 package advance.java.mosh.tutorial.concurrency;
 
-// Confinement
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class SimpleThread implements Runnable {
     @Override
@@ -15,12 +14,15 @@ class SimpleThread implements Runnable {
     }
 }
 public class Concurrency {
+//    private static AtomicInteger resource = new AtomicInteger();
     private static int resource = 0;
     public static int getResource() {
+//        return resource.get();
         return resource;
     }
 
     public static void increase() {
+//        resource.incrementAndGet();
         resource++;
     }
 
