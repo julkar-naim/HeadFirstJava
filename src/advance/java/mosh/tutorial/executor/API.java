@@ -1,5 +1,7 @@
 package advance.java.mosh.tutorial.executor;
 
+import jdk.jshell.SourceCodeAnalysis;
+
 import java.util.concurrent.*;
 
 public class API {
@@ -28,14 +30,26 @@ public class API {
         }
     }
 
-    public void nonBlockingNature() {
-        CompletableFuture.runAsync(() -> {
+    public CompletableFuture<Void> nonBlockingNature() {
+        return CompletableFuture.runAsync(() -> {
             try {
+                System.out.println(Thread.currentThread().getName() + " is executing. Still executing...... First");
                 Thread.sleep(2000);
-                System.out.println("Complete");
+                System.out.println(Thread.currentThread().getName() +" is Complete First");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+        });
+    }
+    public CompletableFuture<?> asyncButReturnsValue() {
+        return CompletableFuture.supplyAsync(() -> {
+            System.out.println("Async task is running on: " + Thread.currentThread().getName() + " Second");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "value";
         });
     }
 }
