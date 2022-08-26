@@ -1,6 +1,7 @@
 package advance.java.mosh.tutorial.executor;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class ComposingCompletableFuture {
 
@@ -20,7 +21,9 @@ public class ComposingCompletableFuture {
 
     public void doWeReallyNeedCompose() {
         getEmailAsync()
-                .thenAcceptAsync(ComposingCompletableFuture::getPlayListAsync) // yes we need compose because thenApplyAsync return a Void CF object
+                .thenApplyAsync(ComposingCompletableFuture::getPlayListAsync)
+                .thenApplyAsync(cf -> cf.getNow(""))
                 .thenAccept(System.out::println);
     }
+    // Okay, I was wrong. It is possible to do composing without thenCompose. But it makes the method chaining longer
 }
